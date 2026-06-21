@@ -1,0 +1,602 @@
+<!-- @dsCard group="Site" viewport="1280x760" name="Лендинг ЭКСПАНСИЯ" subtitle="Главный экран лаборатории" -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ЭКСПАНСИЯ — Frontier AI Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===== TOKENS: colors ===== */
+:root {
+  --ink-900: #0B0B0C;
+  --ink-800: #161618;
+  --ink-700: #232328;
+  --ink-600: #34343B;
+  --ink-500: #565660;
+  --ink-400: #7C7C86;
+  --concrete-300: #A8A69E;
+  --concrete-200: #C9C6BD;
+  --concrete-100: #DDD9CF;
+  --paper-200: #E9E5DC;
+  --paper-100: #F1EEE6;
+  --paper-50:  #F7F5EF;
+  --white:     #FFFFFF;
+  --orange-700: #B82400;
+  --orange-600: #D62E00;
+  --orange-500: #FF3B00;
+  --orange-400: #FF5A24;
+  --orange-100: #FFE3D7;
+  --green-500:  #1F8A4D;
+  --blue-500:   #2D6BFF;
+  --red-500:    #E5342B;
+
+  --surface-canvas:    var(--paper-100);
+  --surface-raised:    var(--white);
+  --surface-sunken:    var(--paper-200);
+  --surface-inverse:   var(--ink-900);
+  --surface-accent:    var(--orange-500);
+  --surface-accent-soft: var(--orange-100);
+  --text-strong:   var(--ink-900);
+  --text-body:     var(--ink-700);
+  --text-muted:    var(--ink-500);
+  --text-faint:    var(--ink-400);
+  --text-inverse:  var(--paper-50);
+  --text-accent:   var(--orange-600);
+  --border-strong: var(--ink-900);
+  --border-default: var(--concrete-200);
+  --border-subtle: var(--concrete-100);
+  --border-accent: var(--orange-500);
+  --focus-ring: var(--orange-500);
+}
+.exp-dark {
+  --surface-canvas:  var(--ink-900);
+  --surface-raised:  var(--ink-800);
+  --surface-sunken:  #050506;
+  --surface-inverse: var(--paper-50);
+  --text-strong:  var(--white);
+  --text-body:    #D7D5CE;
+  --text-muted:   var(--ink-400);
+  --text-faint:   #5A5A63;
+  --text-inverse: var(--ink-900);
+  --border-strong: var(--paper-50);
+  --border-default: #2E2E34;
+  --border-subtle: #1F1F23;
+}
+
+/* ===== TOKENS: typography ===== */
+:root {
+  --font-display: 'Golos Text', system-ui, sans-serif;
+  --font-sans:    'Golos Text', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  --w-regular: 400; --w-medium: 500; --w-semibold: 600;
+  --w-bold: 700; --w-extra: 800; --w-black: 900;
+  --fs-display-xl: clamp(3.5rem, 9vw, 8rem);
+  --fs-display-l:  clamp(2.75rem, 6vw, 5rem);
+  --fs-h1: 3rem; --fs-h2: 2.25rem; --fs-h3: 1.625rem;
+  --fs-body-lg: 1.125rem; --fs-body: 1rem; --fs-body-sm: 0.875rem;
+  --fs-caption: 0.8125rem; --fs-micro: 0.6875rem;
+  --lh-tight: 0.98; --lh-snug: 1.12; --lh-heading: 1.18;
+  --lh-body: 1.55; --lh-relaxed: 1.7;
+  --ls-tighter: -0.04em; --ls-tight: -0.02em;
+  --ls-normal: 0; --ls-wide: 0.04em; --ls-mono-label: 0.16em;
+}
+
+/* ===== TOKENS: spacing ===== */
+:root {
+  --space-0: 0; --space-1: 0.25rem; --space-2: 0.5rem;
+  --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.5rem;
+  --space-6: 2rem; --space-7: 3rem; --space-8: 4rem;
+  --space-9: 6rem; --space-10: 8rem;
+  --container-max: 1280px;
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+  --section-y: clamp(4rem, 9vw, 9rem);
+}
+
+/* ===== TOKENS: effects ===== */
+:root {
+  --radius-0: 0; --radius-sm: 2px; --radius-md: 4px;
+  --radius-lg: 8px; --radius-pill: 999px;
+  --bw-hair: 1px; --bw-solid: 1.5px; --bw-bold: 2px; --bw-heavy: 3px;
+  --shadow-hard-sm: 3px 3px 0 0 var(--ink-900);
+  --shadow-hard-md: 5px 5px 0 0 var(--ink-900);
+  --shadow-hard-lg: 8px 8px 0 0 var(--ink-900);
+  --shadow-hard-accent: 5px 5px 0 0 var(--orange-500);
+  --shadow-soft-sm: 0 1px 2px rgba(11,11,12,0.08);
+  --shadow-soft-md: 0 6px 24px -8px rgba(11,11,12,0.18);
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --ease-in-out: cubic-bezier(0.6, 0, 0.2, 1);
+  --dur-fast: 120ms; --dur-base: 180ms; --dur-slow: 320ms;
+  --z-base: 1; --z-sticky: 100; --z-overlay: 1000; --z-toast: 1100;
+}
+
+/* ===== COMPONENTS: core ===== */
+.exp-btn {
+  font-family: var(--font-display); font-weight: var(--w-bold);
+  letter-spacing: var(--ls-tight); display: inline-flex;
+  align-items: center; justify-content: center; gap: var(--space-2);
+  border: var(--bw-bold) solid var(--ink-900); border-radius: var(--radius-md);
+  cursor: pointer; text-decoration: none; white-space: nowrap;
+  transition: transform var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+  user-select: none;
+}
+.exp-btn:focus-visible { outline: var(--bw-bold) solid var(--focus-ring); outline-offset: 2px; }
+.exp-btn--sm { font-size: var(--fs-body-sm); padding: 6px 14px; }
+.exp-btn--md { font-size: var(--fs-body); padding: 10px 20px; }
+.exp-btn--lg { font-size: var(--fs-body-lg); padding: 14px 28px; }
+.exp-btn--accent { background: var(--orange-500); color: var(--ink-900); box-shadow: var(--shadow-hard-sm); }
+.exp-btn--accent:hover { background: var(--orange-400); }
+.exp-btn--accent:active { transform: translate(3px,3px); box-shadow: 0 0 0 0 var(--ink-900); }
+.exp-btn--primary { background: var(--ink-900); color: var(--white); }
+.exp-btn--primary:hover { background: var(--orange-500); color: var(--ink-900); border-color: var(--ink-900); }
+.exp-btn--primary:active { transform: translateY(1px); }
+.exp-btn--secondary { background: transparent; color: var(--text-strong); }
+.exp-btn--secondary:hover { background: var(--ink-900); color: var(--white); }
+.exp-btn--secondary:active { transform: translateY(1px); }
+.exp-btn--ghost { background: transparent; color: var(--text-strong); border-color: transparent; }
+.exp-btn--ghost:hover { background: rgba(11,11,12,0.08); }
+.exp-btn:disabled { opacity: .4; cursor: not-allowed; pointer-events: none; box-shadow: none; transform: none; }
+
+.exp-badge {
+  font-family: var(--font-mono); font-weight: var(--w-medium);
+  font-size: var(--fs-micro); letter-spacing: var(--ls-mono-label);
+  text-transform: uppercase; display: inline-flex; align-items: center;
+  gap: 6px; padding: 3px 9px; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--ink-900); background: transparent;
+  color: var(--text-strong); line-height: 1.2;
+}
+
+.exp-label {
+  font-family: var(--font-mono); font-weight: var(--w-medium);
+  font-size: var(--fs-micro); letter-spacing: var(--ls-mono-label);
+  text-transform: uppercase; color: var(--text-muted);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.exp-label__tick { color: var(--orange-500); }
+
+.exp-field { display: flex; flex-direction: column; gap: var(--space-2); }
+.exp-field__label {
+  font-family: var(--font-mono); font-size: var(--fs-caption);
+  letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted);
+}
+.exp-input {
+  font-family: var(--font-sans); font-size: var(--fs-body);
+  color: var(--text-strong); background: var(--surface-raised);
+  border: var(--bw-solid) solid var(--ink-900); border-radius: var(--radius-md);
+  padding: 11px 14px; width: 100%;
+  transition: box-shadow var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.exp-input::placeholder { color: var(--text-faint); }
+.exp-input:focus { outline: none; box-shadow: var(--shadow-hard-accent); }
+
+.exp-card {
+  background: var(--surface-raised); border: var(--bw-bold) solid var(--ink-900);
+  border-radius: var(--radius-lg); padding: var(--space-5);
+}
+.exp-card--hard { box-shadow: var(--shadow-hard-md); }
+.exp-card--interactive {
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  cursor: pointer;
+}
+.exp-card--interactive:hover { transform: translate(-2px,-2px); box-shadow: var(--shadow-hard-lg); }
+
+.exp-check { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+.exp-check input { position: absolute; opacity: 0; pointer-events: none; }
+.exp-check__box {
+  width: 22px; height: 22px; border: var(--bw-solid) solid var(--ink-900);
+  border-radius: var(--radius-sm); background: var(--surface-raised);
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.exp-check__box svg { width: 14px; height: 14px; stroke: var(--white); stroke-width: 3.5; opacity: 0; }
+.exp-check input:checked + .exp-check__box { background: var(--orange-500); }
+.exp-check input:checked + .exp-check__box svg { opacity: 1; stroke: var(--ink-900); }
+.exp-check__label { font-family: var(--font-sans); font-size: var(--fs-body-sm); color: var(--text-body); }
+
+/* ===== PAGE LAYOUT ===== */
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--font-sans);background:var(--paper-100);color:var(--ink-900);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--container-max);margin:0 auto;padding:0 var(--gutter)}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:var(--z-sticky);background:rgba(241,238,230,.86);backdrop-filter:saturate(1.1);border-bottom:2px solid var(--ink-900)}
+.nav__in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav__links{display:flex;gap:28px;align-items:center}
+.nav__links a{font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-700);transition:color .12s}
+.nav__links a:hover{color:var(--orange-600)}
+
+/* Hero */
+.hero{position:relative;padding:var(--section-y) 0 calc(var(--section-y) - 1rem);border-bottom:2px solid var(--ink-900);overflow:hidden}
+.hero__grid{position:absolute;inset:0;background-image:linear-gradient(var(--concrete-200) 1px,transparent 1px),linear-gradient(90deg,var(--concrete-200) 1px,transparent 1px);background-size:64px 64px;opacity:.4;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 70% 30%,#000,transparent);mask-image:radial-gradient(ellipse 80% 70% at 70% 30%,#000,transparent)}
+.hero__in{position:relative}
+.hero h1{font-family:var(--font-display);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.92;font-size:clamp(3rem,8vw,7rem);margin:18px 0 0;max-width:14ch}
+.hero .lead{font-size:clamp(1.05rem,1.6vw,1.375rem);line-height:1.5;color:var(--ink-700);max-width:54ch;margin:26px 0 34px}
+.hero__cta{display:flex;gap:14px;flex-wrap:wrap}
+.corner{position:absolute;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-400)}
+.corner--tr{top:18px;right:0}
+
+/* Sections */
+section{scroll-margin-top:80px}
+.band{padding:var(--section-y) 0}
+.band--dark{background:var(--ink-900)}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+.head h2{font-family:var(--font-display);font-weight:800;letter-spacing:-.02em;font-size:clamp(2rem,4vw,3rem);margin:12px 0 0;line-height:1.05}
+.head p{max-width:42ch;color:var(--ink-500);font-size:15px;line-height:1.5;margin:0}
+
+/* Research */
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rcard{display:flex;flex-direction:column;gap:0;min-height:300px;cursor:pointer}
+.rcard__no{font-family:var(--font-mono);font-size:12px;color:var(--orange-600);letter-spacing:.1em}
+.rcard h3{font-family:var(--font-display);font-weight:800;font-size:1.5rem;letter-spacing:-.02em;margin:14px 0 10px;line-height:1.1}
+.rcard p{color:var(--ink-500);font-size:14px;line-height:1.55;margin:0}
+.rcard__foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:22px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-400)}
+.rcard__foot .arr{transition:transform .18s var(--ease-out)}
+.rcard--interactive:hover .arr{transform:translate(3px,-3px)}
+
+/* Telemetry */
+.telem{display:grid;grid-template-columns:repeat(4,1fr)}
+.telem__cell{padding:6px 28px 6px 24px;border-left:2px solid #2e2e34}
+.telem__cell:first-child{border-left:0;padding-left:0}
+.telem__n{font-family:var(--font-display);font-weight:900;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:-.03em;color:#fff;line-height:1}
+.telem__n em{color:var(--orange-500);font-style:normal}
+.telem__l{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-400);margin-top:12px}
+
+/* Publications */
+.pub{display:flex;align-items:center;gap:24px;padding:22px 0;border-top:1px solid var(--concrete-200);transition:padding-left .18s var(--ease-out)}
+.pub:last-child{border-bottom:1px solid var(--concrete-200)}
+.pub:hover{padding-left:10px}
+.pub__date{font-family:var(--font-mono);font-size:12px;color:var(--ink-400);width:96px;flex:none;letter-spacing:.04em}
+.pub__title{font-family:var(--font-display);font-weight:700;font-size:1.2rem;letter-spacing:-.01em;flex:1}
+.pub__tag{flex:none}
+.pub__arr{flex:none;color:var(--ink-400);transition:transform .18s,color .18s}
+.pub:hover .pub__arr{color:var(--orange-600);transform:translate(3px,-3px)}
+
+/* CTA band */
+.cta-band{background:var(--orange-500);border-top:2px solid var(--ink-900);border-bottom:2px solid var(--ink-900)}
+.cta-band__in{display:flex;align-items:center;justify-content:space-between;gap:32px;padding-top:var(--section-y);padding-bottom:var(--section-y);flex-wrap:wrap}
+.cta-band h2{font-family:var(--font-display);font-weight:900;text-transform:uppercase;letter-spacing:-.03em;font-size:clamp(2rem,5vw,3.5rem);line-height:.95;margin:0;color:var(--ink-900);max-width:16ch}
+
+/* Footer */
+footer{background:var(--ink-900);color:#D7D5CE;padding:64px 0 40px}
+.foot__top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:48px;border-bottom:1px solid #2e2e34}
+.foot__cols{display:flex;gap:64px;flex-wrap:wrap}
+.foot__col h4{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-400);margin:0 0 16px}
+.foot__col a{display:block;font-size:14px;color:#D7D5CE;padding:5px 0;transition:color .12s}
+.foot__col a:hover{color:var(--orange-500)}
+.foot__bottom{display:flex;justify-content:space-between;gap:20px;padding-top:24px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-500);flex-wrap:wrap}
+
+/* Modal */
+.ov{position:fixed;inset:0;z-index:var(--z-overlay);background:rgba(11,11,12,.62);display:flex;align-items:center;justify-content:center;padding:24px;animation:fade .18s var(--ease-out)}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.modal{background:var(--paper-50);border:2px solid var(--ink-900);box-shadow:var(--shadow-hard-lg);width:min(460px,100%);padding:32px}
+.modal__x{position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;line-height:1;color:var(--ink-500)}
+
+@media(max-width:880px){
+  .rgrid{grid-template-columns:1fr}
+  .telem{grid-template-columns:repeat(2,1fr);gap:32px 0}
+  .nav__links{display:none}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script type="text/babel" data-presets="react">
+const { useState, useEffect } = React;
+
+function Logo({ size = 26, lang = 'ru' }) {
+  const en = lang === 'en';
+  const head = en ? 'EXPANS' : 'ЭКСПАНС';
+  const ii = en ? 'I' : 'И';
+  const tail = en ? 'A' : 'Я';
+  return (
+    <span style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: size,
+      letterSpacing: '-0.04em', textTransform: 'uppercase', lineHeight: 1, whiteSpace: 'nowrap',
+      color: 'var(--text-strong)', display: 'inline-flex', alignItems: 'baseline', userSelect: 'none' }}>
+      {head}
+      <span style={{ position: 'relative', zIndex: 1, marginLeft: '0.34em' }}>
+        <span aria-hidden="true" style={{ position: 'absolute', left: '-0.34em', top: '-0.05em',
+          color: 'var(--orange-500)', zIndex: -1 }}>{ii}</span>
+        {ii}
+      </span>
+      {tail}
+    </span>
+  );
+}
+
+function Icon({ name, size = 16, color, style }) {
+  return <i data-lucide={name} style={{ width: size, height: size, color, display: 'inline-block', ...style }} />;
+}
+
+function Nav({ onAccess }) {
+  return (
+    <nav className="nav">
+      <div className="wrap nav__in">
+        <a href="#top"><Logo /></a>
+        <div className="nav__links">
+          <a href="#research">Исследования</a>
+          <a href="#publications">Публикации</a>
+          <a href="#lab">Лаборатория</a>
+          <a href="#careers">Карьера</a>
+        </div>
+        <button className="exp-btn exp-btn--accent exp-btn--sm" onClick={onAccess}>
+          Запросить доступ
+        </button>
+      </div>
+    </nav>
+  );
+}
+
+function Hero({ onAccess }) {
+  return (
+    <header className="hero" id="top">
+      <div className="hero__grid" />
+      <span className="corner corner--tr wrap" style={{ left: 'auto', right: 'var(--gutter)', maxWidth: 'none' }}>
+        R&amp;D · LAB-02 · МОСКВА
+      </span>
+      <div className="wrap hero__in">
+        <span className="exp-label"><span className="exp-label__tick">▍</span>Фронтир-лаборатория · путь к AGI</span>
+        <h1>Машины,&nbsp;что понимают мир</h1>
+        <p className="lead">ЭКСПАНСИЯ — исследовательская лаборатория на фронтире мировых моделей,
+          воплощённого интеллекта и вычислительной инженерии. Мы строим системы, которые понимают
+          физический мир — и действуют в нём.</p>
+        <div className="hero__cta">
+          <button className="exp-btn exp-btn--accent exp-btn--lg" onClick={onAccess}>
+            Запросить доступ <Icon name="arrow-right" size={18} />
+          </button>
+          <a className="exp-btn exp-btn--secondary exp-btn--lg" href="#research">Читать исследование</a>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+const AREAS = [
+  { no: '01', t: 'Мировые модели', d: 'Обучаемые модели динамики реальности: предсказание, планирование и симуляция физического мира в латентном пространстве.', tag: 'World Models', status: 'Активно' },
+  { no: '02', t: 'Воплощённый ИИ', d: 'Агенты, которые воспринимают, рассуждают и действуют в реальной среде — от манипуляции до автономной навигации.', tag: 'Embodied AI', status: 'Активно' },
+  { no: '03', t: 'Вычислительная инженерия', d: 'Инфраструктура обучения на пределе масштаба: распределённый трейнинг, инференс и собственные ускорители.', tag: 'Compute', status: 'Набор' },
+];
+
+function Research() {
+  return (
+    <section className="band" id="research">
+      <div className="wrap">
+        <div className="head">
+          <div>
+            <span className="exp-label"><span className="exp-label__tick">▍</span>Исследовательская программа</span>
+            <h2>Три фронтира,<br/>одна траектория</h2>
+          </div>
+          <p>Мы концентрируемся на направлениях, где фундаментальный прорыв напрямую приближает универсальный интеллект.</p>
+        </div>
+        <div className="rgrid">
+          {AREAS.map(a => (
+            <article key={a.no} className="exp-card exp-card--hard exp-card--interactive rcard">
+              <span className="rcard__no">{a.no} / 03</span>
+              <h3>{a.t}</h3>
+              <p>{a.d}</p>
+              <div className="rcard__foot">
+                <span className="exp-badge">{a.tag}</span>
+                <span>{a.status} <span className="arr" style={{ display: 'inline-flex' }}><Icon name="arrow-up-right" size={14} /></span></span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const STATS = [
+  { n: '48', s: 'Исследователей' },
+  { n: '12', s: 'Публикаций / год' },
+  { n: '5K', s: 'GPU в кластере', em: true },
+  { n: '99.98', s: '% uptime обучения' },
+];
+
+function Telemetry() {
+  return (
+    <section className="band band--dark exp-dark" id="lab">
+      <div className="wrap">
+        <div className="head" style={{ marginBottom: 56 }}>
+          <div>
+            <span className="exp-label"><span className="exp-label__tick">▍</span>Телеметрия лаборатории</span>
+            <h2 style={{ color: '#fff' }}>Масштаб как<br/>исследовательский инструмент</h2>
+          </div>
+          <p style={{ color: 'var(--ink-400)' }}>Собственная вычислительная инфраструктура — условие работы на фронтире, а не статья расходов.</p>
+        </div>
+        <div className="telem">
+          {STATS.map((x, i) => (
+            <div className="telem__cell" key={i}>
+              <div className="telem__n">{x.em ? <em>{x.n}</em> : x.n}</div>
+              <div className="telem__l">{x.s}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const PUBS = [
+  { d: '2026.05', t: 'Latent World Models for Long-Horizon Planning', tag: 'World Models' },
+  { d: '2026.03', t: 'Sim-to-Real Transfer без разметки среды', tag: 'Embodied AI' },
+  { d: '2026.01', t: 'Масштабирование инференса на собственных ускорителях', tag: 'Compute' },
+  { d: '2025.11', t: 'Эмерджентное планирование в воплощённых агентах', tag: 'Embodied AI' },
+];
+
+function Publications() {
+  return (
+    <section className="band" id="publications" style={{ paddingTop: 0 }}>
+      <div className="wrap">
+        <div className="head">
+          <div>
+            <span className="exp-label"><span className="exp-label__tick">▍</span>Публикации</span>
+            <h2>Последние работы</h2>
+          </div>
+          <a className="exp-btn exp-btn--ghost exp-btn--sm" href="#">Все публикации <Icon name="arrow-right" size={15} /></a>
+        </div>
+        <div>
+          {PUBS.map((p, i) => (
+            <a className="pub" href="#" key={i}>
+              <span className="pub__date">{p.d}</span>
+              <span className="pub__title">{p.t}</span>
+              <span className="pub__tag exp-badge">{p.tag}</span>
+              <span className="pub__arr"><Icon name="arrow-up-right" size={18} /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CtaBand({ onAccess }) {
+  return (
+    <section className="cta-band" id="careers">
+      <div className="wrap cta-band__in">
+        <h2>Работайте на<br/>фронтире</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 420 }}>
+          <p style={{ margin: 0, color: 'var(--ink-900)', fontSize: 17, lineHeight: 1.5, fontWeight: 500 }}>
+            Мы ищем исследователей и инженеров, готовых ставить и решать задачи, у которых ещё нет учебника.
+          </p>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <button className="exp-btn exp-btn--primary exp-btn--lg" onClick={onAccess}>Открытые позиции</button>
+            <a className="exp-btn exp-btn--secondary exp-btn--lg" href="#" style={{ borderColor: 'var(--ink-900)' }}>Написать нам</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="exp-dark">
+      <div className="wrap">
+        <div className="foot__top">
+          <div style={{ maxWidth: 320 }}>
+            <Logo size={30} />
+            <p style={{ color: 'var(--ink-400)', fontSize: 14, lineHeight: 1.55, marginTop: 18 }}>
+              Исследовательская лаборатория мировых моделей, воплощённого интеллекта и пути к AGI.
+            </p>
+          </div>
+          <div className="foot__cols">
+            <div className="foot__col">
+              <h4>Исследования</h4>
+              <a href="#">Мировые модели</a>
+              <a href="#">Воплощённый ИИ</a>
+              <a href="#">Вычисления</a>
+            </div>
+            <div className="foot__col">
+              <h4>Лаборатория</h4>
+              <a href="#">О нас</a>
+              <a href="#">Публикации</a>
+              <a href="#">Карьера</a>
+            </div>
+            <div className="foot__col">
+              <h4>Контакт</h4>
+              <a href="#">press@expansia.ai</a>
+              <a href="#">research@expansia.ai</a>
+              <a href="#">Москва</a>
+            </div>
+          </div>
+        </div>
+        <div className="foot__bottom">
+          <span>© 2026 ЭКСПАНСИЯ / EXPANSIA</span>
+          <span>R&amp;D · LAB-02 · 55.7558° N, 37.6173° E</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function AccessModal({ onClose }) {
+  const [sent, setSent] = useState(false);
+  return (
+    <div className="ov" onClick={onClose}>
+      <div className="modal" style={{ position: 'relative' }} onClick={e => e.stopPropagation()}>
+        <button className="modal__x" onClick={onClose} aria-label="Закрыть">×</button>
+        {sent ? (
+          <div style={{ textAlign: 'center', padding: '20px 4px' }}>
+            <div style={{ width: 52, height: 52, background: 'var(--orange-500)', display: 'inline-flex',
+              alignItems: 'center', justifyContent: 'center', border: '2px solid var(--ink-900)', marginBottom: 18 }}>
+              <Icon name="check" size={26} color="var(--ink-900)" />
+            </div>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 24,
+              margin: '0 0 8px', letterSpacing: '-.02em' }}>Заявка отправлена</h3>
+            <p style={{ color: 'var(--ink-500)', fontSize: 14, lineHeight: 1.5, margin: 0 }}>
+              Мы свяжемся с вами по рабочей почте в течение нескольких дней.
+            </p>
+          </div>
+        ) : (
+          <React.Fragment>
+            <span className="exp-label"><span className="exp-label__tick">▍</span>Доступ к лаборатории</span>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 26,
+              margin: '12px 0 22px', letterSpacing: '-.02em' }}>Запросить доступ</h3>
+            <form onSubmit={e => { e.preventDefault(); setSent(true); }}
+              style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <div className="exp-field">
+                <label className="exp-field__label">Имя</label>
+                <input className="exp-input" required placeholder="Имя Фамилия" />
+              </div>
+              <div className="exp-field">
+                <label className="exp-field__label">Рабочая почта</label>
+                <input className="exp-input" type="email" required placeholder="you@company.com" />
+              </div>
+              <div className="exp-field">
+                <label className="exp-field__label">Направление интереса</label>
+                <input className="exp-input" placeholder="World Models / Embodied AI / Compute" />
+              </div>
+              <label className="exp-check" style={{ marginTop: 4 }}>
+                <input type="checkbox" required />
+                <span className="exp-check__box">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M4 10.5l4 4 8-9" stroke="currentColor" strokeLinecap="square" />
+                  </svg>
+                </span>
+                <span className="exp-check__label">Согласен на обработку данных</span>
+              </label>
+              <button type="submit" className="exp-btn exp-btn--accent exp-btn--md" style={{ marginTop: 6 }}>
+                Отправить заявку
+              </button>
+            </form>
+          </React.Fragment>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [access, setAccess] = useState(false);
+  const open = () => setAccess(true);
+  useEffect(() => { if (window.lucide) window.lucide.createIcons(); });
+  return (
+    <React.Fragment>
+      <Nav onAccess={open} />
+      <Hero onAccess={open} />
+      <Research />
+      <Telemetry />
+      <Publications />
+      <CtaBand onAccess={open} />
+      <Footer />
+      {access && <AccessModal onClose={() => setAccess(false)} />}
+    </React.Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
